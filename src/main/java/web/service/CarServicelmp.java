@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class CarServicelmp implements CarService{
 
-    private CarDaolmp carDaolmp;
+    private final CarDaolmp carDaolmp;
 
     public CarServicelmp(CarDaolmp carDaolmp) {
         this.carDaolmp = carDaolmp;
