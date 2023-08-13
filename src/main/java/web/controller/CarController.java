@@ -6,31 +6,31 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import web.model.Car;
-import web.service.CarServicelmp;
+import web.service.CarServiceImp;
 
 import java.util.List;
 
 @Controller
 public class CarController {
+
+    private CarServiceImp carServiceImp;
+
     @Autowired
-    private CarServicelmp carServicelmp;
-
-
-    public CarController(CarServicelmp carServicelmp){
-        this.carServicelmp = carServicelmp;
+    public CarController(CarServiceImp carServiceImp){
+        this.carServiceImp = carServiceImp;
     }
 
 
     @GetMapping(value = "/cars")
     public String getCars(@RequestParam(value = "count", required = false, defaultValue = "0") int count, ModelMap model) {
-        List<Car> cars = carServicelmp.getCarList(count);
+        List<Car> cars = carServiceImp.getCarList(count);
         model.addAttribute("cars", cars);
         return "cars";
     }
 
     @GetMapping(value = "/clearcars")
     public String getCars(ModelMap model) {
-        List<Car> cars = carServicelmp.clearCarList();
+        List<Car> cars = carServiceImp.clearCarList();
         model.addAttribute("cars", cars);
         return "cars";
     }
